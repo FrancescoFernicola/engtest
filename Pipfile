@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 pandas = "1.4.1"
 google-cloud-translate = "3.7.2"
+xlrd = "1.2.0"
+openpyxl = "3.0.9"
 
 [requires]
 python_version = "3.7"
