@@ -34,7 +34,7 @@ Obtain the credentials for the Service Account linked to your project in JSON fo
 
 
 ### Usage:
-Given a JSON key (in my use-case, the JSON file `testnlpdeploy-ac6f428e336d.json`), run the application from the terminal using:
+Given a JSON key (in my use-case, the JSON file `testnlpdeploy-ac6f428e336d.json` was already provided), run the application from the terminal using:
 
 ```bash
 py gcloud-trans-request.py [-h] --text SRC_TEXT --json KEY_PATH --src SRC_LANG --trg TRG_LANG
