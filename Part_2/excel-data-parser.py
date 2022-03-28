@@ -4,7 +4,9 @@ import argparse
 import logging
 
 
-def main(dir_path, save_path, steps_after):
+def main(dir_path, save_path, steps_after, engine):
+
+    global df_corpus_rev, df_corpus
 
     save_log = pathlib.Path(save_path) / "Summary.log"
 
@@ -38,8 +40,17 @@ def main(dir_path, save_path, steps_after):
 
         # Here xlrd is implemented. Change import to pd.read_excel([...], engine="openpyxl") to use openpyxl (slower).
 
-        df_corpus = pd.read_excel(n, sheet_name="Corpus", encoding="utf-8")
-        df_corpus_rev = pd.read_excel(n, sheet_name="Corpus revision steps", encoding="utf-8")
+        if engine == "xlrd":
+            df_corpus = pd.read_excel(n, sheet_name="Corpus", encoding="utf-8")
+            df_corpus_rev = pd.read_excel(n, sheet_name="Corpus revision steps", encoding="utf-8")
+
+        elif engine == "openpyxl":
+            df_corpus = pd.read_excel(n, sheet_name="Corpus", encoding="utf-8", engine="openpyxl")
+            df_corpus_rev = pd.read_excel(n, sheet_name="Corpus revision steps", encoding="utf-8", engine="openpyxl")
+
+        else:
+            logging.error(f"The engine name is invalid. Please enter either 'xlrd' or 'openpyxl'")
+            exit()
 
         summary["File"].append(df_corpus.iloc[0]['File'])
         summary["Language"].append(n.stem)
@@ -96,7 +107,11 @@ if __name__ == "__main__":
                         default=["correct2", "correct3"],
                         metavar="AFTER_LQA",
                         help="Steps included in after LQA. Default only considers 'correct2' and 'correct3'")
-
+    parser.add_argument("--engine", nargs="?",
+                        default="xlrd",
+                        type=str, metavar="EXCEL_PARSER",
+                        help="Engine used to parse the Excel file. Can be set to either 'xlrd' or 'openpyxl'"
+                             "Default is xlrd v1.2.0.")
     args = parser.parse_args()
 
-    main(args.dir, args.save_to, args.afterLQA)
+    main(args.dir, args.save_to, args.afterLQA, args.engine)
