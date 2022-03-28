@@ -51,9 +51,11 @@ All other arguments are required and have the following behaviors:
 ## Part_2
 `excel-data-parser.py` is a python script that, given a recursive folder structure with each subfolder being the `name of project_results`, processes the `Corpus` and `Corpus revision steps` tabs of each Excel file and generates a corresponding `Summary.xlsx` file containing all relevant information. Additionally, the program generates a `Summary.log` file.
 
+By default, the script uses xlrd v1.2.0 to parse the `.xlsx` files, because v2.0.1 [only supports `.xls` files](https://xlrd.readthedocs.io/en/latest/).
+Optionally, it is also possible to use the latest version of [openpyxl (v3.0.9)](https://openpyxl.readthedocs.io/en/stable/), although the import time is significantly slower.
 
 ### Usage:
-Given a nested directory, run the application by calling the application from the terminal using:
+Given a nested directory, run the application by calling it from the terminal using:
 
 ```bash
 py corpus_parser.py [-h] --dir DIR_PATH [--save_to [SAVE_PATH]] [--afterLQA [AFTER_LQA [AFTER_LQA ...]]]
@@ -64,4 +66,6 @@ All other arguments are optional and have the following behaviors:
 `--save_to` Path where the output files will be saved. These are either absolute or relative to the current directory. The default save directory is the current working directory.
 
 `--afterLQA` (case insensitive) Determines the steps to be considered as "After LQA", while all other steps are considered as "Before LQA".  E.g. by setting this to `--afterLQA correct1 review1` all steps including `correct1` or `review1` will be considered as "After LQA". The default behavior sets `correct2` and `correct3` as "After LQA".
+
+`--engine` Can be set to either `xlrd` or `openpyxl`. Default is `xlrd`.
   
