@@ -51,7 +51,7 @@ All other arguments are required and have the following behaviors:
 ## Part_2
 `excel-data-parser.py` is a python script that, given a recursive folder structure with each subfolder being the `name of project_results`, processes the `Corpus` and `Corpus revision steps` tabs of each Excel file and generates a corresponding `Summary.xlsx` file containing all relevant information. Additionally, the program generates a `Summary.log` file.
 
-By default, the script uses xlrd v1.2.0 to parse the `.xlsx` files, because v2.0.1 [only supports `.xls` files](https://xlrd.readthedocs.io/en/latest/).
+By default, the script uses xlrd (v1.2.0) to parse the `.xlsx` files, because v2.0.1 [only supports `.xls` files](https://xlrd.readthedocs.io/en/latest/).
 Optionally, it is also possible to use the latest version of [openpyxl (v3.0.9)](https://openpyxl.readthedocs.io/en/stable/), although the import time is significantly slower.
 
 ### Usage:
