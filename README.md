@@ -58,7 +58,7 @@ Optionally, it is also possible to use the latest version of [openpyxl (v3.0.9)]
 Given a nested directory, run the application by calling it from the terminal using:
 
 ```bash
-py corpus_parser.py [-h] --dir DIR_PATH [--save_to [SAVE_PATH]] [--afterLQA [AFTER_LQA [AFTER_LQA ...]]]
+py corpus_parser.py [-h] --dir DIR_PATH [--save_to [SAVE_PATH]] [--afterLQA [AFTER_LQA [AFTER_LQA ...]]] [--engine [EXCEL_PARSER]]
 ```
 
 All other arguments are optional and have the following behaviors:
